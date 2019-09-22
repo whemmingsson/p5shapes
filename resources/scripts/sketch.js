@@ -10,7 +10,7 @@ let tri = new Polygon(
 );
 
 function setup() {
-    let canvas = createCanvas(500,500);
+    let canvas = createCanvas(850,700);
 	    canvas.parent('sketch-holder');
 
     sq.registerAsPushButton(t => {

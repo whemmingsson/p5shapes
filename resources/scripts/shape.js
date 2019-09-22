@@ -42,6 +42,39 @@ const p5shapes = {
     interactionPipeline : []
 }
 
+class Style {
+    constructor() {
+        this._useFill = true;
+        this._fillColor = '#000000';
+        this._strokeColor = '#ffffff';
+        this._strokeThickness = 2;
+
+        this._hoverFillColor = '#88eeee';
+        this._hoverStrokeColor = '#ffffff';
+
+        this._clickedFillColor = '#ffffff';
+        this._clickedStrokeColor = '#000000';
+    }
+
+    set fillColor(color) { this._fillColor = color; }
+    set strokeColor(color) { this._strokeColor = color; }
+    set strokeThickness(weight) { this.strokeThickness = weight; }
+    set hoverFillColor(color) { this._hoverFillColor = color; }
+    set hoverStrokeColor(color) { this._hoverStrokeColor = color; }
+    set clickedFillColor(color) { this._clickedFillColor = color; }
+    set clickedStrokeColor(color) { this._clickedStrokeColor = color; }
+    set useFill(fill) { this._useFill = fill; }
+
+    get fillColor() { return this._fillColor; }
+    get strokeColor() { return this._strokeColor; }
+    get strokeThickness() { return this._strokeThickness; }
+    get hoverFillColor() { return this._hoverFillColor; }
+    get hoverStrokeColor() { return this._hoverStrokeColor; }
+    get clickedFillColor() { return this._clickedFillColor; }
+    get clickedStrokeColor() { return this._clickedStrokeColor; }
+    get useFill() { return this._useFill; }
+}
+
 class Shape {
     constructor(x,y) {
         // Structure
@@ -58,47 +91,14 @@ class Shape {
         this._zIndex = 0.0;
 
         // Display
-        this._useFill = true;
-        this._fillColor = '#000000';
-        this._strokeColor = '#ffffff';
-        this._strokeThickness = 2;
-
-        this._hoverFillColor = '#88eeee';
-        this._hoverStrokeColor = '#ffffff';
-
-        this._clickedFillColor = '#ffffff';
-        this._clickedStrokeColor = '#000000'
+        this._style = new Style();
 
         // Push the shape to render pipe
         p5shapes.renderPipeline.push(this);   
     }
-
-    set fillColor(color){
-        this._fillColor = color;
-    }
-
-    set strokeColor(color){
-        this._strokeColor = color;
-    }
-
-    set strokeThickness(weight){
-        this.strokeThickness = weight;
-    }
-
-    set hoverFillColor(color){
-        this._hoverFillColor = color;
-    }
-
-    set hoverStrokeColor(color){
-        this._hoverStrokeColor = color;
-    }
-
+   
     set hover(isHover) {
         this._hover = isHover;
-    }
-
-    set useFill(fill){
-        this._useFill = fill;
     }
 
     get hover() {
@@ -151,26 +151,26 @@ class Shape {
     /* P5.js render settings function. Call to use the shapes defined properties. */
     setupForRender(){
 
-        if(this._useFill)
-            fill(this._fillColor);
+        if(this._style.useFill)
+            fill(this._style.fillColor);
         else
             noFill();
-        stroke(this._strokeColor);
-        strokeWeight(this._strokeThickness);
+        stroke(this._style.strokeColor);
+        strokeWeight(this._style.strokeThickness);
 
          // Button is clicked (switch button only)
          if(this._switchFunc !== null && this._clickedState) {
-            fill(this._clickedFillColor);
-            stroke(this._clickedStrokeColor);
+            fill(this._style.clickedFillColor);
+            stroke(this._style.clickedStrokeColor);
         }
 
         // Mouse is over
         if(this._hover && this._isButton){
-            fill(this._hoverFillColor);
-            stroke(this._hoverStrokeColor);
+            fill(this._style.hoverFillColor);
+            stroke(this._style.hoverStrokeColor);
         }
 
-        if(this._strokeThickness <= 0)
+        if(this._style.strokeThickness <= 0)
             noStroke();        
     }
 }
