@@ -7,13 +7,13 @@ class Rectangle extends Shape {
 
     render(){
         this.setupForRender();
-        rect(this._x, this._y, this._width, this._height);
+        rect(this.position.x, this.position.y, this._width, this._height);
 
     }
 
     isMouseOver(){
-        return mouseX > this._x && mouseX < this._x + this._width &&
-               mouseY > this._y && mouseY < this._y + this._height;
+        return mouseX > this.position.x && mouseX < this.position.x + this._width &&
+               mouseY > this.position.y && mouseY < this.position.y + this._height;
     }
 
     onMouseMove(){
@@ -44,13 +44,13 @@ class Ellipse extends Rectangle {
 
     render(){
         this.setupForRender();
-        ellipse(this._x, this._y, this._width, this._height);
+        ellipse(this.position.x, this.position.y, this._width, this._height);
     }
 
     // Solution for checking this based on this: https://math.stackexchange.com/questions/76457/check-if-a-point-is-within-an-ellipse
     isMouseOver(){
-        let x = this._x;
-        let y = this._y;
+        let x = this.position.x;
+        let y = this.position.y;
         let h = mouseX;
         let k = mouseY;
         let ry = this._height/2;

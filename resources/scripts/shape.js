@@ -31,7 +31,10 @@ const p5shapes = {
 
     orderPipelines : function() {
         const orderFunc = function(a,b){
-            return a.zIndex - b.zIndex;
+            if(a.zIndex != 0 && b.zIndex != 0)
+                return a.zIndex - b.zIndex;
+            else
+                return -1;
         };
 
         p5shapes.renderPipeline.sort(orderFunc);
@@ -40,6 +43,21 @@ const p5shapes = {
 
     renderPipeline : [],
     interactionPipeline : []
+}
+
+class Position2D {
+    constructor(x,y) {
+        this._x = x;
+        this._y = y;
+    }
+
+    get x(){
+        return this._x;
+    }
+
+    get y(){
+        return this._y;
+    }
 }
 
 class Style {
@@ -78,8 +96,7 @@ class Style {
 class Shape {
     constructor(x,y) {
         // Structure
-        this._x = x;
-        this._y = y;
+        this._position = new Position2D(x,y);
 
         // Interaction
         this._isHoverable = true;
@@ -88,13 +105,25 @@ class Shape {
         this._switchFunc = null;
         this._clickedState = false;
         this._isButton = false;
-        this._zIndex = 0.0;
+        this._zIndex = 0;
 
         // Display
         this._style = new Style();
 
         // Push the shape to render pipe
         p5shapes.renderPipeline.push(this);   
+    }
+
+    get position(){
+        return this._position;
+    }
+
+    set style(style) {
+        this._style = style;
+    }
+
+    get style() {
+        return this._style;
     }
    
     set hover(isHover) {
@@ -109,7 +138,7 @@ class Shape {
         this._zIndex = index;
 
         // To optimize performance, only reorder the items when any z-index has changed.
-        p5shapes.orderPipelines();
+       p5shapes.orderPipelines();
     }
 
     get zIndex() {
