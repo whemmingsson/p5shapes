@@ -65,7 +65,7 @@ class Style {
         this._useFill = true;
         this._fillColor = '#000000';
         this._strokeColor = '#ffffff';
-        this._strokeThickness = 2;
+        this._strokeThickness = 0;
 
         this._hoverFillColor = '#88eeee';
         this._hoverStrokeColor = '#ffffff';
@@ -112,10 +112,17 @@ class Shape {
 
         // Push the shape to render pipe
         p5shapes.renderPipeline.push(this);   
+
+        // Grouping
+        this._inGroup = false;
     }
 
     get position(){
         return this._position;
+    }
+
+    set position(position){
+        this._position = position;
     }
 
     set style(style) {

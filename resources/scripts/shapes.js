@@ -24,6 +24,22 @@ class Rectangle extends Shape {
         
         return this._hover; // We need this to properly set the cursor
     }
+
+    get width(){
+        return this._width;
+    }
+
+    get height(){
+        return this._height;
+    }
+
+    set width(w){
+        this._width = w;
+    }
+
+    set height(h){
+        this._height = h;
+    }
 }
 
 class Square extends Rectangle {
@@ -44,13 +60,14 @@ class Ellipse extends Rectangle {
 
     render(){
         this.setupForRender();
+        ellipseMode(CORNER);
         ellipse(this.position.x, this.position.y, this._width, this._height);
     }
 
     // Solution for checking this based on this: https://math.stackexchange.com/questions/76457/check-if-a-point-is-within-an-ellipse
     isMouseOver(){
-        let x = this.position.x;
-        let y = this.position.y;
+        let x = this.position.x + this._width/2;
+        let y = this.position.y + this._height/2;
         let h = mouseX;
         let k = mouseY;
         let ry = this._height/2;
