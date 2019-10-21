@@ -30,6 +30,16 @@ Flex groups are dynamic containers with a fixed position, but with a flexible si
 
 Static groups are containers with a fixed position, but also a fixed width and height. That means that shapes added to this type of group will be scaled down to fit within the container.
 
+## Styling
+This addon includes an object refered to as a *style*. A style can be applied to any shape, but not to groups. A style consits of several different properties to change the following:
+
+1. Background color
+2. Border color
+3. Border thickness
+
+The style objects also makes it possible to apply the forementioned properties when the shape is either hovered on by the mouse or clicked on.
+
+
 ## Interactivity
 The main goal with this addon is to make it easier to create shapes on the canvas the user can interact with. To make any shape act as a button, the shape must be registered.
 
