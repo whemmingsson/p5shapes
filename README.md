@@ -57,4 +57,4 @@ If you want to register the shape as a button and add some functionality, simply
 
     rectangle.registerAsPushButton(t => console.log('My position: ', t.position));
 
-When called, the button passes itself too the function via the parameter *t*, so that the function can modify the button or access its properties. In this case, the button logs its position in the browser console.
+When called, the button passes itself too the function via the parameter *t*, so that the function can modify the button or access its properties. In this case, the button logs its position in the browser console. 
