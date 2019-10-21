@@ -26,7 +26,7 @@ The shapes are based on the default geometric rendering functions in p5.js. For 
 ### Groups
 Groups, or containers, are added to simplify placement and alignment of shapes on the canvas. Currently, there are two types of groups: Flex groups and static groups.
 
-Flex groups are dynamic containers with a fixed position, but with a flexible size. 
+Flex groups are dynamic containers with a fixed position, but with a flexible size. Either you can choose to make the entire container flexible, or lock the width or height. 
 
 Static groups are containers with a fixed position, but also a fixed width and height. That means that shapes added to this type of group will be scaled down to fit within the container.
 
